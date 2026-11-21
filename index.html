@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Break Buddy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app" id="app">
+    <header class="top">
+      <span class="logo">Pomodoro Timer</span>
+    </header>
+
+    <!-- 1. Choose work length (small, movable) -->
+    <section class="screen" data-screen="pickWork">
+      <h1>Ready to lock in?</h1>
+      <div class="crumb-card" id="crumbCard" hidden>
+        <p class="label">You were</p>
+        <p class="crumb" id="crumbText"></p>
+      </div>
+      <div class="pills" id="workPills"></div>
+      <button class="btn primary full" id="startWorkBtn" disabled>Start</button>
+    </section>
+
+    <!-- 2. Working (small, movable) -->
+    <section class="screen" data-screen="work">
+      <div class="timer"><span id="workTimer">0</span><small>min</small></div>
+      <button class="btn ghost full" id="breakNowBtn">Break now</button>
+    </section>
+
+    <!-- 3. Choose break (big, locked in place) -->
+    <section class="screen" data-screen="pickBreak">
+      <h1>Time for a break 🌿</h1>
+      <label class="field">
+        <span class="label">Before you go, where were you?</span>
+        <input type="text" id="noteInput" placeholder="e.g. halfway through the intro, fixing the 2nd quote" />
+      </label>
+      <p class="label">How long?</p>
+      <div class="pills" id="breakPills"></div>
+      <div id="ideasWrap" hidden>
+        <div class="ideas-head">
+          <p class="label">Pick one!</p>
+          <button class="link" id="shuffleBtn">↻ others</button>
+        </div>
+        <div class="suggestions" id="suggestions"></div>
+      </div>
+      <button class="btn primary full big-btn" id="startBreakBtn" disabled>Start break</button>
+    </section>
+
+    <!-- 4. On break (big, locked in place) -->
+    <section class="screen" data-screen="break">
+      <div class="activity" id="activityCard"></div>
+      <div class="timer soft"><span id="breakTimer">0</span><small>min</small></div>
+      <div class="progress soft"><div class="bar" id="breakBar"></div></div>
+      <button class="btn ghost" id="backEarlyBtn">I'm back early</button>
+    </section>
+        <!-- 5. Back early? Checklist -->
+    <section class="screen" data-screen="checkBreak">
+      <h1>Back already? 👀</h1>
+      <p class="sub">Check these off before you jump back in.</p>
+      <div class="checklist" id="checklist">
+        <label class="check"><input type="checkbox" /><span>I'm refreshed</span></label>
+        <label class="check"><input type="checkbox" /><span>My eyes aren't strained</span></label>
+        <label class="check"><input type="checkbox" /><span>I got a good stretch in</span></label>
+      </div>
+      <button class="btn primary full big-btn" id="resumeBreakBtn">Finish my break (<span id="checkLeft"></span>m left)</button>
+      <button class="btn ghost full" id="nextWorkBtn" disabled>Go to the next work session</button>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
